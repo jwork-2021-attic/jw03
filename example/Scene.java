@@ -3,10 +3,13 @@ package example;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
+
+import example.classloader.SteganographyClassLoader;
 
 public class Scene {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
         Line line = new Line(7);
         line.put(Gourd.ONE, 6);
@@ -19,7 +22,12 @@ public class Scene {
 
         Geezer theGeezer = Geezer.getTheGeezer();
 
-        Sorter sorter = new BubbleSorter();
+        SteganographyClassLoader loader = new SteganographyClassLoader(
+                new URL("https://cdn.njuics.cn/example.BubbleSorter.png"));
+
+        Class c = loader.loadClass("example.BubbleSorter");
+
+        Sorter sorter = (Sorter) c.newInstance();
 
         theGeezer.setSorter(sorter);
 
