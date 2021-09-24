@@ -1,6 +1,5 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "example/lib/commons-io-2.11.0.jar"
     ]
 }
